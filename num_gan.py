@@ -40,13 +40,13 @@ class Discriminator(nn.Module):
         super().__init__()
         self.model = nn.Sequential(
             nn.Linear(784, 1024),
-            nn.ReLu(),
+            nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(1024, 512),
-            nn.ReLu(),
+            nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(512, 256),
-            nn.ReLu(),
+            nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(256, 1),
             nn.Sigmoid(),

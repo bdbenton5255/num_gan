@@ -56,3 +56,30 @@ class Discriminator(nn.Module):
         x = x.view(x.size(0), 784)
         output = self.model(x)
         return output
+
+#Send discriminator model to processing unit
+discriminator = Discriminator().to(device=device)
+
+#Create generator model
+class Generator(nn.Module):
+    
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(100, 256),
+            nn.ReLU(),
+            nn.Linear(256, 512),
+            nn.ReLU(),
+            nn.Linear(512, 1024),
+            nn.ReLU(),
+            nn.Linear(1024, 784),
+            nn.Tanh(),
+        )
+    
+    def forward(self, x):
+        output = self.model(x)
+        output = output.view(x.size(0), 1, 28, 28)
+        return output
+
+#Send generator model to processing unit
+generator = Generator().to(device=device)

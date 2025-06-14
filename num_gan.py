@@ -20,3 +20,36 @@ train_set = [
 #Examine training data
 plt.plot(train_data[:, 0], train_data[:, 1], ".")
 plt.show()
+
+#Create data loader
+batch_size = 32
+train_loader = torch.utils.data.DataLoader(
+    train_set, batch_size=batch_size, shuffle=True
+)
+
+#Creating the discriminator network
+class Discriminator(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(2, 256),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(64, 1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x):
+        output = self.model(x)
+        return output
+
+#Instantiate discriminator object
+discriminator = Discriminator()
+

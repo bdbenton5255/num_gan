@@ -1,0 +1,1 @@
+A Generative Adversarial Network (GAN) made with Python's PyTorch that generates realistic images of handwritten numerals.

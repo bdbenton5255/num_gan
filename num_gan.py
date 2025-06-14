@@ -17,10 +17,6 @@ train_set = [
     (train_data[i], train_labels[i]) for i in range(train_data_length)
 ]
 
-#Examine training data
-plt.plot(train_data[:, 0], train_data[:, 1], ".")
-plt.show()
-
 #Create data loader
 batch_size = 32
 train_loader = torch.utils.data.DataLoader(

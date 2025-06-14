@@ -72,3 +72,12 @@ class Generator(nn.Module):
 
 #Instantiate generator object
 generator = Generator()
+
+#Training parameters
+lr = 0.001
+num_epochs = 300
+loss_function = nn.BCELoss()
+
+#Create optimizers using Adam algorithm
+optimizer_discriminator = torch.optim.Adam(discriminator.parameters(), lr=lr)
+optimizer_generator = torch.optim.Adam(generator.parameters(), lr=lr)

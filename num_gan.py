@@ -33,10 +33,26 @@ train_loader = torch.utils.data.DataLoader(
     train_set, batch_size=batch_size, shuffle=True
 )
 
-#Plot training data samples
-real_samples, mnist_labels = next(iter(train_loader))
-for i in range(16):
-    ax = plt.subplot(4, 4, i + 1)
-    plt.imshow(real_samples[i].reshape(28, 28), cmap="gray_r")
-    plt.xticks([])
-    plt.yticks([])
+#Create discriminator model
+class Discriminator(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(784, 1024),
+            nn.ReLu(),
+            nn.Dropout(0.3),
+            nn.Linear(1024, 512),
+            nn.ReLu(),
+            nn.Dropout(0.3),
+            nn.Linear(512, 256),
+            nn.ReLu(),
+            nn.Dropout(0.3),
+            nn.Linear(256, 1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x):
+        x = x.view(x.size(0), 784)
+        output = self.model(x)
+        return output

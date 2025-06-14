@@ -137,3 +137,17 @@ for epoch in range(num_epochs):
         if n == batch_size - 1:
             print(f"Epoch: {epoch} Loss D.: {loss_discriminator}")
             print(f"Epoch: {epoch} Loss G.: {loss_generator}")
+
+#Generate samples
+latent_space_samples = torch.randn(batch_size, 100).to(device=device)
+generated_samples = generator(latent_space_samples)
+
+#Plot generated samples
+generated_samples = generated_samples.cpu().detach()
+for i in range(16):
+    ax = plt.subplot(4, 4, i + 1)
+    plt.imshow(generated_samples[i].reshape(28, 28), cmap="gray_r")
+    plt.xticks([])
+    plt.yticks([])
+
+plt.show()

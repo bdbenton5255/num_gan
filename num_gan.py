@@ -106,7 +106,7 @@ for epoch in range(num_epochs):
             device=device
         )
         generated_samples = generator(latent_space_samples)
-        generated_samples_labels = torch.zeroes((batch_size, 1)).to(
+        generated_samples_labels = torch.zeros((batch_size, 1)).to(
             device=device
         )
         all_samples = torch.cat((real_samples, generated_samples))

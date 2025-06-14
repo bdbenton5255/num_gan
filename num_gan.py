@@ -83,3 +83,12 @@ class Generator(nn.Module):
 
 #Send generator model to processing unit
 generator = Generator().to(device=device)
+
+#Defining training variables
+lr = 0.0001
+num_epochs = 50
+loss_function = nn.BCELoss()
+
+#Defining training optimizers
+optimizer_discriminator = torch.optim.Adam(discriminator.parameters(), lr=lr)
+optimizer_generator = torch.optim.Adam(generator.parameters(), lr=lr)
